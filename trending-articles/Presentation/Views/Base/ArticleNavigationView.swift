@@ -9,8 +9,22 @@ import SwiftUI
 
 struct ArticleNavigationView: View, Navigatable {
     
-    enum Navigation {
-        case detail
+    enum Navigation: Hashable {
+        case detail(article: Article)
+        
+        private var id: Int {
+            switch self {
+            case .detail: return 1
+            }
+        }
+        
+        static func == (lhs: ArticleNavigationView.Navigation, rhs: ArticleNavigationView.Navigation) -> Bool {
+            lhs.id == rhs.id
+        }
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
     }
     
     @State var path: [Navigation] = []
@@ -27,8 +41,8 @@ struct ArticleNavigationView: View, Navigatable {
     }
     
     private var rootView: some View {
-        ArticleListView(viewModel: .init(articleStore: ArticleStoreImpl(), onArticleClick: {
-            path.append(.detail)
+        ArticleListView(viewModel: .init(articleStore: ArticleStoreImpl(), onArticleClick: { article in
+            path.append(.detail(article: article))
         }))
     }
     

@@ -5,6 +5,12 @@
 //  Created by Mahin Ibrahim on 20/02/2025.
 //
 
+struct ArticleResponse: Codable {
+    let status: String
+    let numResults: Int
+    let results: [Article]
+}
+
 struct Article: Codable {
     
     let id: Int
@@ -28,6 +34,11 @@ struct Article: Codable {
         let subtype: String
         let caption: String?
         let mediaMetadata: [MediaMetadata]
+        
+        enum CodingKeys: String, CodingKey {
+            case type, subtype, caption
+            case mediaMetadata = "media-metadata"
+        }
         
         struct MediaMetadata: Codable {
             let url: String

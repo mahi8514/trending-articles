@@ -13,17 +13,14 @@ struct ArticleListView: View {
     
     var body: some View {
         Text("Hello, World!")
-            .onTapGesture {
-                viewModel.articleAction()
-            }
     }
 }
 
 #Preview {
     
     struct MockArticleStore: ArticleStore {
-        func fetchArticles() -> [Article] {
-            []
+        func articles(days: Int) async throws -> ArticleResponse {
+            .init(status: "OK", numResults: 1, results: [])
         }
     }
     

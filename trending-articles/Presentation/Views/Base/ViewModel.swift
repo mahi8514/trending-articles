@@ -15,8 +15,15 @@ class ViewModel: ObservableObject {
     @Published var isPresentingAlert: Bool = false
     
     init() {
+        setupUI()
+        addObservables()
+        Task { await task() }
         print("\(String(describing: type(of: self))) Initialised")
     }
+    
+    func setupUI() { }
+    
+    func addObservables() { }
     
     func task() async { }
     

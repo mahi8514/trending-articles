@@ -6,3 +6,4 @@
 //
 
 typealias Completion = (() -> ())
+typealias ArticleCompletion = ((Article) -> ())

@@ -8,7 +8,7 @@
 
 enum ArticleTargetType: TargetType {
     
-    case articles(day: Int)
+    case articles(days: Int)
     
     var scheme: String {
         return "https"
@@ -20,8 +20,8 @@ enum ArticleTargetType: TargetType {
     
     var path: String {
         switch self {
-        case .articles(let day):
-            return "/svc/mostpopular/v2/viewed/\(day).json"
+        case .articles(let days):
+            return "/svc/mostpopular/v2/viewed/\(days).json"
         }
     }
     
@@ -57,13 +57,13 @@ enum ArticleTargetType: TargetType {
 }
 
 protocol ArticleStore {
-    func fetchArticles() -> [Article]
+    func articles(days: Int) async throws -> ArticleResponse
 }
 
 final class ArticleStoreImpl: APIClient<ArticleTargetType>, ArticleStore {
     
-    func fetchArticles() -> [Article] {
-        []
+    func articles(days: Int) async throws -> ArticleResponse {
+        try await request(target: .articles(days: days))
     }
     
 }

@@ -9,10 +9,12 @@ import Foundation
 
 final class ArticleListViewModel: ViewModel {
     
-    private let onArticleClick: Completion?
     private let articleStore: ArticleStore
+    private let onArticleClick: ArticleCompletion?
     
-    init(articleStore: ArticleStore, onArticleClick: Completion?) {
+    @Published private(set) var articles: [Article] = []
+    
+    init(articleStore: ArticleStore, onArticleClick: ArticleCompletion?) {
         self.articleStore = articleStore
         self.onArticleClick = onArticleClick
         super.init()
@@ -24,11 +26,20 @@ final class ArticleListViewModel: ViewModel {
         defer {
             isLoading = false
         }
-        
+        await fetchArticles()
     }
     
-    func articleAction() {
-        onArticleClick?()
+    private func fetchArticles() async {
+        do {
+            let response = try await articleStore.articles(days: 7)
+            self.articles = response.results
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func articleAction(article: Article) {
+        onArticleClick?(article)
     }
     
 }

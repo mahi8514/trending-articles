@@ -28,18 +28,20 @@ protocol TargetType {
 
 extension TargetType {
     
-    func makeURLRequest() throws -> URLRequest {
-        
+    private func asURL() throws -> URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
         urlComponents.host =  baseURL
         urlComponents.path = path
-
+        
         guard let url = urlComponents.url else {
             throw NetworkError.invalidURL
         }
-        
-        var request = URLRequest(url: url)
+        return url
+    }
+    
+    func makeURLRequest() throws -> URLRequest {
+        var request = URLRequest(url: try asURL())
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
         
@@ -47,10 +49,7 @@ extension TargetType {
         case .requestPlain:
             return request
         case .requestParameters(let parameters):
-//            if let requestUrl = request.url, var requestUrlComponents = URLComponents(url: requestUrl, resolvingAgainstBaseURL: false), !parameters.isEmpty {
-//                requestUrlComponents.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
-//            }
-            urlComponents.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
+            request.updateQueryParameters(with: parameters)
             return request
         case .requestJSONEncodable(let encodable, let encoder):
             request.httpBody = try encoder.encode(encodable)

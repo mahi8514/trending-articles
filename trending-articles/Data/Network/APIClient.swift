@@ -17,8 +17,9 @@ class APIClient<Target: TargetType> {
         self.keyDecodingStrategy = keyDecodingStrategy
     }
     
-    func request<T: Decodable>(target: TargetType) async throws -> T {
+    func request<T: Decodable>(target: Target) async throws -> T {
         let request = try target.makeURLRequest()
+        print(request.cURL())
         let (data, response) = try await urlSession.data(for: request)
         return try handleResponse(data: data, response: response)
     }
