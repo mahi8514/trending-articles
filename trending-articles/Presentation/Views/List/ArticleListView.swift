@@ -22,7 +22,9 @@ struct ArticleListView: View {
 #Preview {
     
     struct MockArticleStore: ArticleStore {
-        
+        func fetchArticles() -> [Article] {
+            []
+        }
     }
     
     return ArticleListView(viewModel: .init(articleStore: MockArticleStore(), onArticleClick: nil))

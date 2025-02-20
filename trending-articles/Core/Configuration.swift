@@ -28,6 +28,12 @@ struct Configuration {
     }
 }
 
+enum APIConfig {
+    static var baseUrl: String {
+        return try! Configuration.value(for: "BASE_URL")
+    }
+}
+
 enum APIKeys {
     static var articleAPIKey: String {
         return try! Configuration.value(for: "ARTICLE_API_KEY")
