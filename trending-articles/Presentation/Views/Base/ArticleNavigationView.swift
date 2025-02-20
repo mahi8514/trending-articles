@@ -34,7 +34,7 @@ struct ArticleNavigationView: View, Navigatable {
             rootView
                 .navigationDestination(for: Navigation.self) { navigation in
                     switch navigation {
-                    case .detail: detailView()
+                    case .detail(let article): detailView(article: article)
                     }
                 }
         }
@@ -46,8 +46,8 @@ struct ArticleNavigationView: View, Navigatable {
         }))
     }
     
-    private func detailView() -> some View {
-        Text("Detail View")
+    private func detailView(article: Article) -> some View {
+        ArticleDetailView(viewModel: .init(article: article))
     }
     
 }

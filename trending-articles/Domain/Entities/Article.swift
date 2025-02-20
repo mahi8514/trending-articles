@@ -49,13 +49,13 @@ struct Article: Codable {
     }
     
     var mediaURLs: [URL] {
-        let allMetadatas = media.flatMap(\.mediaMetadata)
-        return allMetadatas.map(\.url).compactMap(URL.init(string:))
+        let allMetadatas = media.compactMap { $0.mediaMetadata.last?.url }
+        return allMetadatas.compactMap(URL.init(string:))
     }
     
-    var firstMediaURL: URL? {
-        guard let firstMediaURLString = media.first?.mediaMetadata.first?.url else { return nil }
-        return URL(string: firstMediaURLString)
+    var thumbnailURL: URL? {
+        guard let thumbnailURLString = media.first?.mediaMetadata.first?.url else { return nil }
+        return URL(string: thumbnailURLString)
     }
     
 }
@@ -80,7 +80,12 @@ extension Article {
                             subtype: "",
                             caption: "",
                             mediaMetadata: [.init(url: "https://www.highfile.com/wp-content/uploads/2024/05/A4-Newspaper-Article-Template-Page-01.png",
-                                                  format: "png")])])
+                                                  format: "png")]),
+                      .init(type: "",
+                            subtype: "",
+                            caption: "",
+                            mediaMetadata: [.init(url: "https://www.sribestariinternational.edu.my/wp-content/uploads/2021/04/Providing-guidance-and-support-through-online-learning-1024x708.jpg",
+                                                  format: "jpg")])])
     }
     
 }

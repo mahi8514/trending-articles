@@ -14,7 +14,7 @@ struct ArticleListItemView: View {
     var body: some View {
         HStack(spacing: 2) {
             HStack(spacing: 8) {
-                articleImageView(url: article.firstMediaURL)
+                articleImageView(url: article.thumbnailURL)
                     .scaledToFill()
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
@@ -32,7 +32,7 @@ struct ArticleListItemView: View {
                             Image(systemName: "pencil.and.scribble")
                             Text(article.byline)
                         }
-                        HStack {
+                        HStack(spacing: 2) {
                             Image(systemName: "calendar")
                             Text(article.publishedDate, style: .date)
                         }

@@ -21,9 +21,13 @@ struct ArticleListView: View {
         List {
             
             Section {
-                
                 ForEach(viewModel.articles, id: \.id) { article in
-                    ArticleListItemView(article: article)
+                    Button {
+                        viewModel.articleAction(article: article)
+                    } label: {
+                        ArticleListItemView(article: article)
+                    }
+                    .buttonStyle(.plain)
                 }
             } header: {
                 dayPickerView
