@@ -10,10 +10,6 @@ import SwiftUI
 @main
 struct trending_articlesApp: App {
     
-    init() {
-        ArticleStoreImpl.activate(baseUrl: "paste_provider_url_here", apiKey: "paste_api_key_from_provider_here")
-    }
-    
     var body: some Scene {
         WindowGroup {
             ArticleNavigationView()

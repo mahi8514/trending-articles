@@ -21,6 +21,11 @@ struct ArticleListView: View {
         List {
             
         }
+        .overlay {
+            if viewModel.isLoading {
+                ProgressView()
+            }
+        }
     }
 }
 

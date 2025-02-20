@@ -5,6 +5,8 @@
 //  Created by Mahin Ibrahim on 20/02/2025.
 //
 
+import Foundation
+
 struct ArticleResponse: Codable {
     let status: String
     let numResults: Int
@@ -16,8 +18,7 @@ struct Article: Codable {
     let id: Int
     let url: String
     let source: String
-    let publishedDate: String
-    let updated: String
+    let publishedDate: Date
     let section: String
     let subsection: String
     let type: String
@@ -43,8 +44,6 @@ struct Article: Codable {
         struct MediaMetadata: Codable {
             let url: String
             let format: String
-            let width: Int
-            let height: Int
         }
     }
     
