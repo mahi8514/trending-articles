@@ -27,7 +27,7 @@ struct ArticleNavigationView: View, Navigatable {
     }
     
     private var rootView: some View {
-        ArticleListView(viewModel: .init(onArticleClick: {
+        ArticleListView(viewModel: .init(articleStore: ArticleStoreImpl(), onArticleClick: {
             path.append(.detail)
         }))
     }

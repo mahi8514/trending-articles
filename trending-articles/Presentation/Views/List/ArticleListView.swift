@@ -20,5 +20,10 @@ struct ArticleListView: View {
 }
 
 #Preview {
-    ArticleListView(viewModel: .init(onArticleClick: nil))
+    
+    struct MockArticleStore: ArticleStore {
+        
+    }
+    
+    return ArticleListView(viewModel: .init(articleStore: MockArticleStore(), onArticleClick: nil))
 }

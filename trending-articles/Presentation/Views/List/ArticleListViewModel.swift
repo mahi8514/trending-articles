@@ -10,8 +10,10 @@ import Foundation
 final class ArticleListViewModel: ViewModel {
     
     private let onArticleClick: Completion?
+    private let articleStore: ArticleStore
     
-    init(onArticleClick: Completion?) {
+    init(articleStore: ArticleStore, onArticleClick: Completion?) {
+        self.articleStore = articleStore
         self.onArticleClick = onArticleClick
         super.init()
     }
