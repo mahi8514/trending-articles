@@ -24,6 +24,7 @@ struct ArticleListView: View {
         .overlay {
             if viewModel.isLoading {
                 ProgressView()
+                    .scaleEffect(1.5)
             }
         }
     }
