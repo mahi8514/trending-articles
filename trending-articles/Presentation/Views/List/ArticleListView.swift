@@ -33,9 +33,11 @@ struct ArticleListView: View {
     
     struct MockArticleStore: ArticleStore {
         func articles(days: Int) async throws -> ArticleResponse {
-            .init(status: "OK", numResults: 1, results: [])
+            .init(status: "OK", numResults: 1, results: [.preview])
         }
     }
     
-    return ArticleListView(viewModel: .init(articleStore: MockArticleStore(), onArticleClick: nil))
+    return NavigationStack {
+        ArticleListView(viewModel: .init(articleStore: MockArticleStore(), onArticleClick: nil))
+    }
 }

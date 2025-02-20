@@ -34,12 +34,17 @@ final class ArticleListViewModel: ViewModel {
             let response = try await articleStore.articles(days: 7)
             self.articles = response.results
         } catch {
-            print(error.localizedDescription)
+            presentAlert(title: "Something went wrong", message: error.localizedDescription)
         }
     }
     
     func articleAction(article: Article) {
         onArticleClick?(article)
+    }
+    
+    private func presentAlert(title: String, message: String) {
+        alertItem = .init(title: title, message: message, actions: nil)
+        isPresentingAlert = true
     }
     
 }

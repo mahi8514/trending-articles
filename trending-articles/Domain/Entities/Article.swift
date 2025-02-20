@@ -48,3 +48,27 @@ struct Article: Codable {
     }
     
 }
+
+extension Article {
+    
+    static var preview: Article {
+        .init(id: 1, url: "https://www.example.com",
+                                           source: "Example source",
+                                           publishedDate: .now,
+                                           section: "Example section",
+                                           subsection: "Example subsection",
+                                           type: "Example type",
+                                           title: "Example title",
+                                           abstract: "Example abstract",
+                                           desFacet: [],
+                                           orgFacet: [],
+                                           perFacet: [],
+                                           geoFacet: [],
+                                           media: [.init(type: "",
+                                                         subtype: "",
+                                                         caption: "",
+                                                         mediaMetadata: [.init(url: "https://www.highfile.com/wp-content/uploads/2024/05/A4-Newspaper-Article-Template-Page-01.png",
+                                                                               format: "png")])])
+    }
+    
+}
