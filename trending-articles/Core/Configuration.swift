@@ -28,6 +28,9 @@ struct Configuration {
     }
 }
 
+
+/// Use below variables if you store secrets in config.xcconfig.
+/*
 enum APIConfig {
     static var baseUrl: String {
         return try! Configuration.value(for: "BASE_URL")
@@ -39,3 +42,4 @@ enum APIKeys {
         return try! Configuration.value(for: "ARTICLE_API_KEY")
     }
 }
+*/

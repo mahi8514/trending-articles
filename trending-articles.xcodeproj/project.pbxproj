@@ -33,7 +33,6 @@
 		DA0641E92D67358D0015730A /* Exceptions for "trending-articles" folder in "trending-articles" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Resources/config.xcconfig,
 				Resources/Info.plist,
 			);
 			target = 14D87A332D6667F000CC8EDB /* trending-articles */;
@@ -404,8 +403,6 @@
 		};
 		14D87A592D6667F100CC8EDB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 14D87A362D6667F000CC8EDB /* trending-articles */;
-			baseConfigurationReferenceRelativePath = Resources/config.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -436,8 +433,6 @@
 		};
 		14D87A5A2D6667F100CC8EDB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 14D87A362D6667F000CC8EDB /* trending-articles */;
-			baseConfigurationReferenceRelativePath = Resources/config.xcconfig;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -12,7 +12,15 @@ struct ArticleListView: View {
     @StateObject var viewModel: ArticleListViewModel
     
     var body: some View {
-        Text("Hello, World!")
+        contentView
+            .navigationTitle("Most popular")
+            .alert(isPresenting: $viewModel.isPresentingAlert, item: $viewModel.alertItem)
+    }
+    
+    private var contentView: some View {
+        List {
+            
+        }
     }
 }
 

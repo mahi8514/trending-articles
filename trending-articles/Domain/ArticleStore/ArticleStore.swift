@@ -5,6 +5,48 @@
 //  Created by Mahin Ibrahim on 20/02/2025.
 //
 
+protocol ArticleStore {
+    func articles(days: Int) async throws -> ArticleResponse
+}
+
+final class ArticleStoreImpl: APIClient<ArticleTargetType>, ArticleStore {
+    
+    static private var baseUrl: String?
+    static private var apiKey: String?
+    
+    static func activate(baseUrl: String, apiKey: String) {
+        self.baseUrl = baseUrl
+        self.apiKey = apiKey
+    }
+    
+    static func getBaseUrl() -> String {
+        guard let baseUrl else {
+            fatalError(storeNotActivatedFatalErrorMessage)
+        }
+        return baseUrl
+    }
+    
+    static func getAPIKey() -> String {
+        guard let apiKey else {
+            fatalError(storeNotActivatedFatalErrorMessage)
+        }
+        return apiKey
+    }
+    
+    func articles(days: Int) async throws -> ArticleResponse {
+        try await request(target: .articles(days: days))
+    }
+    
+}
+
+extension ArticleStoreImpl {
+    
+    static private var storeNotActivatedFatalErrorMessage: String {
+        "ArticleStore not activated"
+    }
+    
+}
+
 
 enum ArticleTargetType: TargetType {
     
@@ -15,7 +57,7 @@ enum ArticleTargetType: TargetType {
     }
     
     var baseURL: String {
-        return APIConfig.baseUrl
+        return ArticleStoreImpl.getBaseUrl()
     }
     
     var path: String {
@@ -50,20 +92,8 @@ enum ArticleTargetType: TargetType {
         var parameters: HTTPParameters = [:]
         switch self {
         case .articles:
-            parameters = ["api-key": APIKeys.articleAPIKey]
+            parameters = ["api-key": ArticleStoreImpl.getAPIKey()]
         }
         return parameters
     }
-}
-
-protocol ArticleStore {
-    func articles(days: Int) async throws -> ArticleResponse
-}
-
-final class ArticleStoreImpl: APIClient<ArticleTargetType>, ArticleStore {
-    
-    func articles(days: Int) async throws -> ArticleResponse {
-        try await request(target: .articles(days: days))
-    }
-    
 }
