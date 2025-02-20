@@ -19,8 +19,16 @@ struct ArticleListView: View {
     
     private var contentView: some View {
         List {
-            ForEach(viewModel.articles, id: \.id) { article in
-                ArticleListItemView(article: article)
+            
+            Section {
+                
+                ForEach(viewModel.articles, id: \.id) { article in
+                    ArticleListItemView(article: article)
+                }
+            } header: {
+                dayPickerView
+                    .padding(.bottom)
+                    .textCase(nil)
             }
         }
         .overlay {
@@ -29,6 +37,16 @@ struct ArticleListView: View {
                     .scaleEffect(1.5)
             }
         }
+    }
+    
+    private var dayPickerView: some View {
+        Picker("", selection: $viewModel.day) {
+            ForEach(viewModel.days, id: \.id) { day in
+                Text(day.title)
+                    .tag(day)
+            }
+        }
+        .pickerStyle(.segmented)
     }
 }
 

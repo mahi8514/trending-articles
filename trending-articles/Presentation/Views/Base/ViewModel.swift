@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 @MainActor
 class ViewModel: ObservableObject {
@@ -13,6 +14,8 @@ class ViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var alertItem: AlertItem?
     @Published var isPresentingAlert: Bool = false
+    
+    var cancellables: Set<AnyCancellable> = []
     
     init() {
         setupUI()

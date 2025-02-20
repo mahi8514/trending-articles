@@ -13,6 +13,7 @@ enum NetworkError: Error {
     case timeout
     case conflict
     case gone
+    case tooManyRequests
     case serverError
     case noInternetConnection
     case invalidURL
@@ -36,6 +37,8 @@ enum NetworkError: Error {
             self = .conflict
         case 410:
             self = .gone
+        case 429:
+            self = .tooManyRequests
         case 500:
             self = .serverError
         default:
