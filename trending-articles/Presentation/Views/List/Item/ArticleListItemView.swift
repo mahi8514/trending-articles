@@ -12,30 +12,34 @@ struct ArticleListItemView: View {
     let article: Article
     
     var body: some View {
-        HStack {
-            articleImageView(url: article.firstMediaURL)
-                .scaledToFill()
-                .frame(width: 50, height: 50)
-                .clipShape(Circle())
-            
-            VStack(alignment: .leading, spacing: 6) {
-                Text(article.title)
-                Text(article.abstract)
-                    .font(.callout)
-                    .foregroundStyle(.secondary)
+        HStack(spacing: 2) {
+            HStack(spacing: 8) {
+                articleImageView(url: article.firstMediaURL)
+                    .scaledToFill()
+                    .frame(width: 50, height: 50)
+                    .clipShape(Circle())
                 
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(spacing: 2) {
-                        Image(systemName: "pencil.and.scribble")
-                        Text(article.byline)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(article.title)
+                        .lineLimit(2)
+                    Text(article.abstract)
+                        .lineLimit(2)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack(spacing: 2) {
+                            Image(systemName: "pencil.and.scribble")
+                            Text(article.byline)
+                        }
+                        HStack {
+                            Image(systemName: "calendar")
+                            Text(article.publishedDate, style: .date)
+                        }
                     }
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text(article.publishedDate, style: .date)
-                    }
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 }
-                .font(.caption)
-                .foregroundStyle(.secondary)
             }
             Spacer()
             DisclosureIndicatorView()

@@ -19,7 +19,9 @@ struct ArticleListView: View {
     
     private var contentView: some View {
         List {
-            
+            ForEach(viewModel.articles, id: \.id) { article in
+                ArticleListItemView(article: article)
+            }
         }
         .overlay {
             if viewModel.isLoading {
