@@ -33,7 +33,7 @@
 		DA0641E92D67358D0015730A /* Exceptions for "trending-articles" folder in "trending-articles" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = 14D87A332D6667F000CC8EDB /* trending-articles */;
 		};
@@ -418,7 +418,7 @@
 				DEVELOPMENT_TEAM = 2LXD6YW5S3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "trending-articles/Info.plist";
+				INFOPLIST_FILE = "trending-articles/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -450,7 +450,7 @@
 				DEVELOPMENT_TEAM = 2LXD6YW5S3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "trending-articles/Info.plist";
+				INFOPLIST_FILE = "trending-articles/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
