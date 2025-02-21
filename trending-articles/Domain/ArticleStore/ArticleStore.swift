@@ -11,24 +11,28 @@ protocol ArticleStore {
 
 final class ArticleStoreImpl: APIClient<ArticleTargetType>, ArticleStore {
     
+    enum StoreError: Error {
+        case storeNotActivated(message: String)
+    }
+    
     static private var baseUrl: String?
     static private var apiKey: String?
     
-    static func activate(baseUrl: String, apiKey: String) {
+    static func activate(baseUrl: String?, apiKey: String?) {
         self.baseUrl = baseUrl
         self.apiKey = apiKey
     }
     
-    static func getBaseUrl() -> String {
+    static func getBaseUrl() throws -> String {
         guard let baseUrl else {
-            fatalError(storeNotActivatedFatalErrorMessage)
+            throw StoreError.storeNotActivated(message: "\(storeNotActivatedFatalErrorMessage) Baseurl is unavailable.")
         }
         return baseUrl
     }
     
-    static func getAPIKey() -> String {
+    static func getAPIKey() throws -> String {
         guard let apiKey else {
-            fatalError(storeNotActivatedFatalErrorMessage)
+            throw StoreError.storeNotActivated(message: "\(storeNotActivatedFatalErrorMessage) APIKey is unavailable.")
         }
         return apiKey
     }
@@ -42,7 +46,7 @@ final class ArticleStoreImpl: APIClient<ArticleTargetType>, ArticleStore {
 extension ArticleStoreImpl {
     
     static private var storeNotActivatedFatalErrorMessage: String {
-        "ArticleStore not activated"
+        "The ArticleStore has not been activated."
     }
     
 }
@@ -57,7 +61,7 @@ enum ArticleTargetType: TargetType {
     }
     
     var baseURL: String {
-        return ArticleStoreImpl.getBaseUrl()
+        return try! ArticleStoreImpl.getBaseUrl()
     }
     
     var path: String {
@@ -92,7 +96,7 @@ enum ArticleTargetType: TargetType {
         var parameters: HTTPParameters = [:]
         switch self {
         case .articles:
-            parameters = ["api-key": ArticleStoreImpl.getAPIKey()]
+            parameters = ["api-key": try! ArticleStoreImpl.getAPIKey()]
         }
         return parameters
     }
