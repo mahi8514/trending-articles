@@ -7,13 +7,19 @@
 
 import Foundation
 
+protocol URLSessionProtocol {
+    func data(for request: URLRequest) async throws -> (Data, URLResponse)
+}
+
+extension URLSession: URLSessionProtocol { }
+
 class APIClient<Target: TargetType> {
     
-    private let urlSession: URLSession
+    private let urlSession: URLSessionProtocol
     private let keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy
     private let dateDecodingStrategy: JSONDecoder.DateDecodingStrategy
     
-    init(urlSession: URLSession = URLSession.shared,
+    init(urlSession: URLSessionProtocol = URLSession.shared,
          keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase,
          dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .formatted(.yearMonthDayFormatter)) {
         self.urlSession = urlSession
@@ -47,7 +53,7 @@ class APIClient<Target: TargetType> {
             let decodedResponse = try jsonDecoder.decode(T.self, from: data)
             return decodedResponse
         } catch {
-            throw NetworkError.decodingError(message: error.localizedDescription)
+            throw NetworkError.decodingError
         }
     }
     

@@ -13,7 +13,7 @@ struct ArticleResponse: Codable {
     let results: [Article]
 }
 
-struct Article: Codable {
+struct Article: Codable, Equatable {
     
     let id: Int
     let url: String
@@ -31,7 +31,7 @@ struct Article: Codable {
     let geoFacet: [String]
     let media: [Media]
     
-    struct Media: Codable {
+    struct Media: Codable, Equatable {
         let type: String
         let subtype: String
         let caption: String?
@@ -42,7 +42,7 @@ struct Article: Codable {
             case mediaMetadata = "media-metadata"
         }
         
-        struct MediaMetadata: Codable {
+        struct MediaMetadata: Codable, Equatable {
             let url: String
             let format: String
         }
@@ -65,7 +65,7 @@ extension Article {
     static var preview: Article {
         .init(id: 1, url: "https://www.example.com",
               source: "Example source",
-              publishedDate: .now,
+              publishedDate: Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: .now)!,
               section: "Example section",
               subsection: "Example subsection",
               byline: "By, example author 1 and example author 2",

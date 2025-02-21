@@ -5,7 +5,7 @@
 //  Created by Mahin Ibrahim on 20/02/2025.
 //
 
-enum NetworkError: Error {
+enum NetworkError: Error, Equatable {
     case badRequest
     case unauthorized
     case forbidden
@@ -18,7 +18,7 @@ enum NetworkError: Error {
     case noInternetConnection
     case invalidURL
     case invalidResponse
-    case decodingError(message: String)
+    case decodingError
     case unknownError(statusCode: Int)
     
     init(from statusCode: Int) {
