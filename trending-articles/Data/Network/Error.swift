@@ -5,7 +5,9 @@
 //  Created by Mahin Ibrahim on 20/02/2025.
 //
 
-enum NetworkError: Error, Equatable {
+import Foundation
+
+enum NetworkError: Error, LocalizedError, Equatable {
     case badRequest
     case unauthorized
     case forbidden
@@ -44,5 +46,9 @@ enum NetworkError: Error, Equatable {
         default:
             self = .unknownError(statusCode: statusCode)
         }
+    }
+    
+    var errorDescription: String? {
+        "Operation failed, Please try again later."
     }
 }
