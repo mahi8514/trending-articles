@@ -28,7 +28,7 @@ protocol TargetType {
 
 extension TargetType {
     
-    private func asURL() throws -> URL {
+    func asURL() throws -> URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
         urlComponents.host =  baseURL
