@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>trending-articlesTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>14D87A332D6667F000CC8EDB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>14D87A432D6667F100CC8EDB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>14D87A4D2D6667F100CC8EDB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>

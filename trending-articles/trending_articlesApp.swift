@@ -10,6 +10,10 @@ import SwiftUI
 @main
 struct trending_articlesApp: App {
     
+    init() {
+        
+    }
+    
     var body: some Scene {
         WindowGroup {
             ArticleNavigationView()
